@@ -1,0 +1,107 @@
+export const manufacturers = [
+  "Acura",
+  "Alfa Romeo",
+  "Aston Martin",
+  "Audi",
+  "Bentley",
+  "BMW",
+  "Buick",
+  "Cadillac",
+  "Chevrolet",
+  "Chrysler",
+  "Citroen",
+  "Dodge",
+  "Ferrari",
+  "Fiat",
+  "Ford",
+  "GMC",
+  "Honda",
+  "Hyundai",
+  "Infiniti",
+  "Jaguar",
+  "Jeep",
+  "Kia",
+  "Lamborghini",
+  "Land Rover",
+  "Lexus",
+  "Lincoln",
+  "Maserati",
+  "Mazda",
+  "McLaren",
+  "Mercedes-Benz",
+  "MINI",
+  "Mitsubishi",
+  "Nissan",
+  "Porsche",
+  "Ram",
+  "Rolls-Royce",
+  "Subaru",
+  "Tesla",
+  "Toyota",
+  "Volkswagen",
+  "Volvo",
+];
+
+export const yearsOfProduction = [
+  { title: "Year", value: "" },
+  { title: "2015", value: "2015" },
+  { title: "2016", value: "2016" },
+  { title: "2017", value: "2017" },
+  { title: "2018", value: "2018" },
+  { title: "2019", value: "2019" },
+  { title: "2020", value: "2020" },
+  { title: "2021", value: "2021" },
+  { title: "2022", value: "2022" },
+  { title: "2023", value: "2023" },
+];
+
+export const fuels = [
+  {
+    title: "Fuel",
+    value: "",
+  },
+  {
+    title: "Gas",
+    value: "Gas",
+  },
+  {
+    title: "Electricity",
+    value: "Electricity",
+  },
+];
+
+export const footerLinks = [
+  {
+    title: "About",
+    url:"/about",
+    id:1,
+    links: [
+      { title: "How it works", url: "/",id:1 },
+      { title: "Featured", url: "/" ,id:2},
+      { title: "Partnership", url: "/" ,id:3},
+      { title: "Bussiness Relation", url: "/",id:4 },
+    ],
+  },
+  {
+    title: "Company",
+    id:2,
+    url:"/company",
+    links: [
+      { title: "Events", url: "/",id:5 },
+      { title: "Blog", url: "/",id:6 },
+      { title: "Podcast", url: "/",id:7 },
+      { title: "Invite a friend", url: "/",id:8 },
+    ],
+  },
+  {
+    title: "Socials",
+    id:3,
+    url:"/Socials",
+    links: [
+      { title: "Discord", url: "/",id:9 },
+      { title: "Instagram", url: "/",id:10 },
+      { title: "Twitter", url: "/",id:11 },
+      { title: "Facebook", url: "/",id:12 },
+    ],
+  },
+];
