@@ -1,10 +1,8 @@
-"use client"
 
 import SearchModelBar from "@/components/SearchModelBar"
-import {useState} from "react";
+import CarCard from "./CarCard"
 
-export default function Searchbar(){
-    const [searchMenu,setSearchMenu] = useState("")
+export default function SearchBar() {
     return (
         <div className={"px-12 flex flex-col gap-12"}>
             <div className={"flex flex-col gap-4"}>
@@ -16,8 +14,11 @@ export default function Searchbar(){
                 </p>
             </div>
             <label>
-                <SearchModelBar searchMenu={searchMenu} setMenu={setSearchMenu}/>
+                <SearchModelBar />
             </label>
+            <div>
+                <CarCard/>
+            </div>
         </div>
     )
 }

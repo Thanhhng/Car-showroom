@@ -1,11 +1,11 @@
-interface Dropdown{
+interface dropdown{
     title : string
 }
 
-function CustomDropDown (){
+function CustomDropDown (title:dropdown):any{
     return (
         <div>
-            custom drop down
+            thanh
         </div>
     )
 }

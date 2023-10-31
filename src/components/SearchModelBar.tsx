@@ -6,7 +6,7 @@ import Image from "next/image";
 import {useState} from "react";
 import {manufacturers} from "@/Constants/"
 
-export default function SearchModelBar ({searchMenu,setMenu}:SearchModelProps):any{
+export default function SearchModelBar ():any{
     const [query,setQuery] = useState("")
     const handleChange = (e:any) => {
         setQuery(e.target.value)
@@ -45,7 +45,7 @@ export default function SearchModelBar ({searchMenu,setMenu}:SearchModelProps):a
                                         key={item}
                                         className={({ active }) =>
                                             `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                                                active ? "bg-blue-300 text-white" : "text-gray-900"
+                                                active ? "bg-blue-500 text-white" : "text-gray-900"
                                             }`
                                         }
                                         value={item}
