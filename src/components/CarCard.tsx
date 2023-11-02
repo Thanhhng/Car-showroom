@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 import {fetchCars} from "@/utils/fetch"
 import Image from "next/image";
-
+import { createPortal } from "react-dom";
+import CarDetail from "@/components/CarCardDetail"
 interface CustomButtonProps {
     isDisabled?: boolean;
     btnType?: "button" | "submit";
@@ -34,11 +35,13 @@ const calculateCarRent = (city_mpg: number, year: number) => {
     const rentalRatePerDay = basePricePerDay + mileageRate + ageRate;
     return rentalRatePerDay.toFixed(0);
 };
+type VoidCallback = () => {};
 
 
 export default function CarCard(){
     const [isOpen,setIsOpen] = useState(false)
     const [data, setData] = useState(null);
+    const setIsOpenOrNot:VoidCallback = () => setIsOpen(!isOpen)
     useEffect(() => {
         async function getData() {
             const _data = await fetchCars();
@@ -94,7 +97,6 @@ export default function CarCard(){
                                     textStyles='text-white text-[14px] leading-[17px] font-bold'
                                     rightIcon='/right-arrow.svg'
                                     handleClick={() => {
-                                        console.log(`${!isOpen ? 'Open' : 'Close'}`)
                                         setIsOpen(!isOpen)
                                     }}
                                 />
@@ -105,6 +107,10 @@ export default function CarCard(){
                 })
                 :  <div className="text-[22px] leading-[26px] font-bold capitalize;">loading ... </div>
             }
+            {isOpen && createPortal(
+                            <CarDetail onClick={setIsOpenOrNot}/>
+                            ,document.body,
+                        )}
         </div>
     )
 }
