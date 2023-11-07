@@ -1,5 +1,5 @@
 export async function fetchCars () {
-	const url = 'https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=porsche';
+	const url = 'https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=q3';
 	const options = {
 		method: 'GET',
 		headers: {
@@ -17,3 +17,11 @@ export async function fetchCars () {
 	}
 }
 
+export const getImage = (car: any) => {
+	const url = new URL("https://cdn.imagin.studio/getimage");
+	url.searchParams.append('customer', "hrjavascript-mastery");
+	url.searchParams.append('make', car.make);
+	url.searchParams.append('modelFamily', car.model.split(" ")[0]);
+	url.searchParams.append('modelYear', `${car.year}`);
+	return url;
+}

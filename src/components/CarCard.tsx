@@ -1,9 +1,10 @@
 "use client"
-import { useEffect, useState } from "react";
-import {fetchCars} from "@/utils/fetch"
+import { MouseEventHandler, useEffect, useState } from "react";
+import {fetchCars, getImage} from "@/utils/fetch"
 import Image from "next/image";
 import { createPortal } from "react-dom";
 import CarDetail from "@/components/CarCardDetail"
+
 interface CustomButtonProps {
     isDisabled?: boolean;
     btnType?: "button" | "submit";
@@ -17,7 +18,7 @@ const Button = ({ isDisabled, btnType, containerStyles, textStyles, title, right
     <button
       disabled={isDisabled}
       type={btnType || "button"}
-      className={`custom-btn ${containerStyles}`}
+      className={`custom-btn ${containerStyles} block `}
       onClick={handleClick}
     >
         <span className={`flex-1 ${textStyles}`}>
@@ -35,30 +36,31 @@ const calculateCarRent = (city_mpg: number, year: number) => {
     const rentalRatePerDay = basePricePerDay + mileageRate + ageRate;
     return rentalRatePerDay.toFixed(0);
 };
-type VoidCallback = () => {};
+type VoidCallback = any;
 
 
 export default function CarCard(){
     const [isOpen,setIsOpen] = useState(false)
     const [data, setData] = useState(null);
+    const [indexOfItem, setIndex] = useState(0)
     const setIsOpenOrNot:VoidCallback = () => setIsOpen(!isOpen)
     useEffect(() => {
         async function getData() {
             const _data = await fetchCars();
             setData(_data );
-        } 
+        }
         getData();
     }, []);
-    console.log(data);
     return (
         <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-8 pt-14 mb-8">
             {
                 data ? data.map((e:any,index:number) => {
                     return(
-                    <div key={index} className="flex flex-col p-6 justify-center items-start text-black-100 bg-blue-100 hover:bg-white hover:shadow-md rounded-3xl group">
+                    <div key={index} className="flex flex-col p-6 justify-center items-start text-black-100 bg-gray-200 hover:bg-white hover:shadow-md rounded-3xl group">
                         <div className="w-full flex justify-between items-start gap-2">
-                            <h2 className="text-[22px] leading-[26px] font-bold capitalize;">
-                                {e.make} {e.model}
+                            <h2 className="text-[22px] leading-[26px] font-bold flex flex-row gap-1">
+                                    {e.make.charAt(0).toUpperCase() + e.make.slice(1)}
+                                    <span>{e.model.charAt(0).toUpperCase() + e.model.slice(1)}</span>
                             </h2>
                         </div>
                         <p className='flex mt-6 text-[32px] leading-[38px] font-extrabold items-center justify-between'>
@@ -67,7 +69,7 @@ export default function CarCard(){
                             <span className='self-end text-[14px] leading-[17px] font-medium'>/day</span>
                         </p>
                         <div className='relative w-full h-40 my-3 object-contain'>
-                            <Image src="/hero.png"  alt="car-pic" fill={true} priority className="object-contain" />
+                            <Image src={getImage(e)}  alt="car-pic" fill={true} priority className="object-contain" />
                         </div>
                         <div className="relative flex w-full mt-2">
                             <div className="flex group-hover:invisible w-full justify-between text-grey mx-4">
@@ -90,7 +92,7 @@ export default function CarCard(){
                                     </p>
                                 </div>
                             </div>
-                            <div className=" hidden group-hover:flex absolute bottom-0 w-full z-10">
+                            <div className="hidden group-hover:flex absolute bottom-0 w-full z-10">
                                 <Button
                                     title="View More"
                                     containerStyles="w-full py-[16px] rounded-full bg-blue-400 "
@@ -98,7 +100,9 @@ export default function CarCard(){
                                     rightIcon='/right-arrow.svg'
                                     handleClick={() => {
                                         setIsOpen(!isOpen)
-                                    }}
+                                        setIndex(index)
+                                    }
+                                }
                                 />
                             </div>
                         </div>
@@ -107,10 +111,13 @@ export default function CarCard(){
                 })
                 :  <div className="text-[22px] leading-[26px] font-bold capitalize;">loading ... </div>
             }
-            {isOpen && createPortal(
-                            <CarDetail onClick={setIsOpenOrNot}/>
-                            ,document.body,
-                        )}
+            {
+                isOpen &&
+                createPortal(
+                    <CarDetail onClick={setIsOpenOrNot}  carData={data ?  data[indexOfItem] : null } />
+                    ,document.body,
+                )
+            }
         </div>
     )
 }

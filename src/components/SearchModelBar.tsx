@@ -1,10 +1,10 @@
 "use client";
 
-import {Combobox,Transition} from "@headlessui/react"
-import {SearchModelProps} from "@/types/index"
+import {Combobox} from "@headlessui/react"
 import Image from "next/image";
 import {useState} from "react";
 import {manufacturers} from "@/Constants/"
+
 
 export default function SearchModelBar ():any{
     const [query,setQuery] = useState("")
@@ -13,9 +13,9 @@ export default function SearchModelBar ():any{
     };
 
     const queryFilter = query === "" ? manufacturers : manufacturers.filter((item) =>{
-        return item.toLowerCase().includes(query.toLowerCase());
+        const result =  item.toLowerCase().includes(query.toLowerCase());
+        return result;
     })
-
     return (
         <div className={"flex-1 w-full flex justify-start items-center border"} >
             <div className="w-full">
@@ -37,6 +37,7 @@ export default function SearchModelBar ():any{
                                     as="div"
                                     value={query}
                                     className='mt-1 max-h-60 w-full rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'
+                                    onClick={() => setQuery(query)}
                                 >
                                 </Combobox.Option>
                             ) : (
