@@ -5,8 +5,12 @@ import Image from "next/image";
 import {useState} from "react";
 import {manufacturers} from "@/Constants/"
 
+type SearchProps = {
+    carOption:string;
+    setCarOption:any;
+}
 
-export default function SearchModelBar ():any{
+export default function SearchModelBar ({carOption,setCarOption}:SearchProps){
     const [query,setQuery] = useState("")
     const handleChange = (e:any) => {
         setQuery(e.target.value)
@@ -19,12 +23,12 @@ export default function SearchModelBar ():any{
     return (
         <div className={"flex-1 w-full flex justify-start items-center border"} >
             <div className="w-full">
-                <Combobox as="div" className="w-full" >
-                    <div className={"flex w-full px-4 "}>
-                        <Combobox.Button >
+                <Combobox value={carOption} onChange={setCarOption}>
+                    <div className={"relative w-full pl-4 "}>
+                        <Combobox.Button className="absolute top-[10px]">
                             <Image src="/car-logo.svg" width={30} height={30} alt="car-svg"/>
                         </Combobox.Button>
-                        <Combobox.Input className={"w-full h-[48px] pl-6 p-2 rounded-l-full max-sm:rounded-full bg-light-white outline-none cursor-pointer text-md"}
+                        <Combobox.Input className={"flex items-center w-full h-[48px] pl-12 p-2 rounded-l-full max-sm:rounded-full bg-light-white outline-none cursor-pointer text-md"}
                             placeholder={"Bmw"}
                             displayValue={(searchMenu :string) => searchMenu}
                             onChange={handleChange}
