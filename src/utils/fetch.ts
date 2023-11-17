@@ -6,7 +6,7 @@ export interface FilterProps {
 	fuel?: string;
 }
 
-export async function fetchCars ({model,manufacturer,year,limit=10,fuel="gas"} : FilterProps) {
+export async function fetchCars ({model,manufacturer,year,limit=14,fuel="gas"} : FilterProps) {
 	const url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&model=${model}&limit=${limit}`;
 	const options = {
 		method: 'GET',

@@ -1,9 +1,10 @@
 "use client"
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import HeroComponent from "../components/Hero";
 import SearchBar from "@/components/searchBar";
 import CarCard from '@/components/CarCard';
 import { FilterProps, fetchCars } from "@/utils/fetch";
+
 
 
 
@@ -14,6 +15,7 @@ export interface searchFetchCars {
 export default function Home({searchParams}: searchFetchCars) {
   const [carData, setCarData] = useState<any[]>([]);
   const carListRef = useRef<HTMLElement>(null)
+  
   if(searchParams?.manufacturer){
     carListRef.current?.scrollIntoView({behavior : "smooth",})
   }
@@ -30,7 +32,7 @@ export default function Home({searchParams}: searchFetchCars) {
   }, [searchParams]);
   return (
     <div>
-      <HeroComponent />
+        <HeroComponent />
       <div>
         <div className={"flex flex-col gap-4 px-10 mb-8 md:mb-12"}>
           <h1 className={"text-3xl"}>

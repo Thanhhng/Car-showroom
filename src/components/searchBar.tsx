@@ -1,9 +1,9 @@
 "use client"
 import SearchModelBar from "@/components/SearchModelBar"
-import CarCard from "./CarCard"
 import { useState } from "react"
 import Image from "next/image"
-import { useRouter,useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+
 
 
 export function SearchButton({classProp} :{classProp?:string;}){

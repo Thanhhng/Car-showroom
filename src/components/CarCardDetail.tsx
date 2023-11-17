@@ -20,9 +20,9 @@ export default function CarDetail({handleClick,stateProps,carData}:buttonPros){
           <Image src={getImage(carData)} priority fill alt="car-img" className="object-contain" />
         </div>
         <div className="px-4 py-4">
-          {entriesCar.map((value,index) => {
+          {entriesCar.map((value:any,index) => {
             return (
-              <div key={index} className="flex justify-between">
+              <div key={index} className="flex justify-between gap-4">
                 <h3 className="text-gray-400 capitalize text-xl">{value[0].charAt(0).toUpperCase() + value[0].slice(1)} : </h3>
                 <span className="text-black-100 font-semibold text-lg">{value[1]}</span>
               </div>
