@@ -8,7 +8,7 @@ interface CustomButtonProps {
     onclick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-const CustomButton:React.FC<CustomButtonProps> = ({ value , buttonWidth, onclick}) => {
+const CustomButton:React.FC<CustomButtonProps> = ({ value , onclick}) => {
     return (
         <button
             className={`w-40 bg-blue-600 h-12 rounded-3xl sm:w-56   `}

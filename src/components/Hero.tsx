@@ -1,7 +1,11 @@
 import HeroActions from "@/components/HeroActions";
 import Image from "next/image";
 
-export default function HeroComponent() {
+interface heroProps {
+    ref: string;
+}
+
+export default function HeroComponent({}) {
     return (
          <div className={' mt-8 flex flex-col gap-12 md:flex md:flex-row md:gap-0 lg:gap-0  2xl:px-30 '}>
             <div className={'p-8 flex flex-col gap-6 sm:p-12  sm:flex sm:flex-col sm:gap-12'}>
