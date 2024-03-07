@@ -48,7 +48,7 @@ export default function CarCard({ data,myRef }:any) {
     return (
         <div className={`${data.length > 0 ? "grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-8 pt-14 mb-8 px-8" : "flex items-center justify-center w-full py-12"}`} ref={myRef}>
             {Array.isArray(data) && data.length > 0
-                ? data.map((e:any, index:number) => (
+                ? data.map((e, index:number) => (
                     <div key={index} className="flex flex-col p-6 justify-center items-start text-black-100 bg-gray-200 hover:bg-white hover:shadow-md rounded-3xl group">
                         <div className="w-full flex justify-between items-start gap-2">
                             <h2 className="text-[22px] leading-[26px] font-bold flex flex-row gap-1">

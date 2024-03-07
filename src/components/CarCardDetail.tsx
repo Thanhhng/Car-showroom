@@ -23,8 +23,8 @@ export default function CarDetail({handleClick,stateProps,carData}:buttonPros){
           {entriesCar.map((value:any,index) => {
             return (
               <div key={index} className="flex justify-between gap-4">
-                <h3 className="text-gray-400 capitalize text-xl">{value[0].charAt(0).toUpperCase() + value[0].slice(1)} : </h3>
-                <span className="text-black-100 font-semibold text-lg">{value[1]}</span>
+                <h3 className="text-black text-lg">{value[0].charAt(0).toUpperCase() + value[0].slice(1)} : </h3>
+                <span className="text-black font-medium text-lg">{value[1]}</span>
               </div>
             )
           })}

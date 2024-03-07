@@ -1,11 +1,16 @@
-import HeroActions from "@/components/HeroActions";
 import Image from "next/image";
+import CustomButton from "./CustomButton";
+import { RefObject } from "react";
 
 interface heroProps {
-    ref: string;
-}
+    forwardedRef: RefObject<HTMLDivElement> | null;
 
-export default function HeroComponent({}) {
+}
+export default function HeroComponent({forwardedRef}:heroProps) {
+    if(forwardedRef === null ){return}
+    function handleClick() {
+        forwardedRef?.current?.scrollIntoView({ behavior: 'smooth' });
+    }
     return (
          <div className={' mt-8 flex flex-col gap-12 md:flex md:flex-row md:gap-0 lg:gap-0  2xl:px-30 '}>
             <div className={'p-8 flex flex-col gap-6 sm:p-12  sm:flex sm:flex-col sm:gap-12'}>
@@ -15,7 +20,7 @@ export default function HeroComponent({}) {
                 <p className={'text-2xl text-gray-500 leading-snug'}>
                     streamline your car rental experience with our effortless booking process
                 </p>
-                <HeroActions />
+                <CustomButton value={'Explore Cars'}  buttonWidth={8} onclick={handleClick}/>
             </div>
              <div className={"w-full  flex justify-center"}>
                  <div className={"w-fit h-fit flex justify-center sm:h-72 md:h-80 lg:h-96 m-auto pr-12 "}>

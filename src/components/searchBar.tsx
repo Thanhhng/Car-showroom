@@ -28,7 +28,7 @@ export default function SearchBar() {
     const router = useRouter();
     function handleSubmit(e:React.FormEvent){
         e.preventDefault()
-        if(carName === "" || model === ""){
+        if(carName === "" || !carName){
             alert("please fill the input");
         } else {
             carName.trim();
